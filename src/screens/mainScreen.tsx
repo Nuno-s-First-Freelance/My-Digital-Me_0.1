@@ -1,9 +1,16 @@
 import React from "react";
 import { Linking } from "expo";
-import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ViewBase,
+} from "react-native";
 
 export function MainScreen() {
-  const profilePicture = "../resources/holywood.png";
+  const profilePicture = "../resources/images/holywood.png";
   const linkedInUrl = "https://www.linkedin.com/in/nm-fullstack-dev/";
 
   const openUrl = () => {
@@ -18,7 +25,10 @@ export function MainScreen() {
 
   return (
     <View style={styles.container}>
-      <Image source={require(profilePicture)} style={styles.image}></Image>
+      <Text style={styles.header}>My Digital Me</Text>
+      <View style={{ padding: 50 }}>
+        <Image source={require(profilePicture)} style={styles.image}></Image>
+      </View>
       <Text>Nuno Miguel Fernandes Moreira</Text>
       <Text>Freelancer</Text>
       <TouchableOpacity onPress={openUrl}>
@@ -34,5 +44,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   link: { color: "blue" },
+  header: { fontWeight: "bold" },
   image: { width: 400, height: 400, borderRadius: 400 / 2 },
 });
