@@ -1,0 +1,17 @@
+{
+  "name": "MyDigitalMe",
+  "displayName": "MyDigitalMe",
+  "expo": {
+    "name": "MyDigitalMe",
+    "slug": "MyDigitalMe",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
