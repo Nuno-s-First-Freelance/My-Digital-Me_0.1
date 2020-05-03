@@ -1,13 +1,6 @@
 import React from "react";
 import { Linking } from "expo";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  ViewBase,
-} from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 export function MainScreen() {
   const profilePicture = "../resources/images/holywood.png";
