@@ -1,9 +1,12 @@
 import React from "react";
 import { Linking } from "expo";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { storage } from "../firebase";
 
 export function MainScreen() {
-  const profilePicture = "../resources/images/holywood.png";
+  //   const profilePicture = "../resources/images/holywood.png";
+//   const profilePicture = storage.ref("holywood.png").getMetadata();
+  // //   gs://my-digital-me.appspot.com/holywood.png;
   const linkedInUrl = "https://www.linkedin.com/in/nm-fullstack-dev/";
 
   const openUrl = () => {
@@ -19,9 +22,9 @@ export function MainScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>My Digital Me</Text>
-      <View style={{ padding: 50 }}>
+      {/* <View style={{ padding: 50 }}>
         <Image source={require(profilePicture)} style={styles.image}></Image>
-      </View>
+      </View> */}
       <Text>Nuno Miguel Fernandes Moreira</Text>
       <Text>Freelancer</Text>
       <TouchableOpacity onPress={openUrl}>
