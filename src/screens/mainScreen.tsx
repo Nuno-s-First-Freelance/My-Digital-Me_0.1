@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Linking } from "expo";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { storage } from "../firebase";
+import { storage } from "../firebase/firebase";
 
 export function MainScreen() {
   const [profilePictureUrl, setProfilePictureUrl] = useState();
