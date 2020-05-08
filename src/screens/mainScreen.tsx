@@ -36,7 +36,7 @@ export function MainScreen() {
         ></Image>
       </View>
       <Text>Nuno Miguel Fernandes Moreira</Text>
-      <Text>Software Engineer</Text>
+      <Text>Software Engineer </Text>
       <TouchableOpacity onPress={openUrl}>
         <Text style={styles.link}>LinkedIn</Text>
       </TouchableOpacity>
