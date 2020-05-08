@@ -14,11 +14,12 @@ export function MainScreen() {
     .then((url) => setProfilePictureUrl(url));
 
   const linkedInUrl = "https://www.linkedin.com/in/nm-fullstack-dev/";
+  const gitHubUrl = "https://github.com/Nuno-s-First-Freelance";
 
-  const openUrl = () => {
-    Linking.canOpenURL(linkedInUrl).then((supported) => {
+  const openUrl = (url: string) => {
+    Linking.canOpenURL(url).then((supported) => {
       if (supported) {
-        Linking.openURL(linkedInUrl);
+        Linking.openURL(url);
       } else {
         console.log("Don't know how to open URI: " + linkedInUrl);
       }
@@ -37,8 +38,11 @@ export function MainScreen() {
       </View>
       <Text>Nuno Miguel Fernandes Moreira</Text>
       <Text>Software Engineer</Text>
-      <TouchableOpacity onPress={openUrl}>
+      <TouchableOpacity onPress={() => openUrl(linkedInUrl)}>
         <Text style={styles.link}>LinkedIn</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => openUrl(gitHubUrl)}>
+        <Text style={styles.link}>GitHub</Text>
       </TouchableOpacity>
     </View>
   );
