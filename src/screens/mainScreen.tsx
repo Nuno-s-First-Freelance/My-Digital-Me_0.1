@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Linking } from "expo";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { storage } from "../firebase";
 
 export function MainScreen() {
-  //   const profilePicture = "../resources/images/holywood.png";
-//   const profilePicture = storage.ref("holywood.png").getMetadata();
-  // //   gs://my-digital-me.appspot.com/holywood.png;
+  const [profilePictureUrl, setProfilePictureUrl] = useState();
+
+  storage
+    .ref()
+    .child("Pictures")
+    .child("profilePicture.jpg")
+    .getDownloadURL()
+    .then((url) => setProfilePictureUrl(url));
+
   const linkedInUrl = "https://www.linkedin.com/in/nm-fullstack-dev/";
 
   const openUrl = () => {
@@ -22,9 +28,13 @@ export function MainScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>My Digital Me</Text>
-      {/* <View style={{ padding: 50 }}>
-        <Image source={require(profilePicture)} style={styles.image}></Image>
-      </View> */}
+      <View style={{ padding: 50 }}>
+        <Image
+          // defaultSource={}
+          source={{ uri: profilePictureUrl }}
+          style={styles.image}
+        ></Image>
+      </View>
       <Text>Nuno Miguel Fernandes Moreira</Text>
       <Text>Freelancer</Text>
       <TouchableOpacity onPress={openUrl}>
