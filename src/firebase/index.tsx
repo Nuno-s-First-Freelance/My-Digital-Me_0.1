@@ -10,10 +10,11 @@ export const database = app.database();
 export const storage = app.storage();
 
 export {
-  logoutUser,
-  loginUser,
-  sendEmailWithPassword,
-  signInUser,
+  LogoutUser,
+  LoginUser,
+  SendEmailWithPassword,
+  SignInUser,
+  isUserSignedIn,
 } from "./auth-api";
 
 export { app as initializeFirebase };

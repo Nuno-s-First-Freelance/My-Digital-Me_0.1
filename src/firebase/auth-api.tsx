@@ -2,23 +2,25 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { AuthDetails } from "./constants";
 
+export var isUserSignedIn = false;
+
 export const onAuthStateChangedEvent = () => {
-  return firebase.auth().onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       // User is logged in
-      return true;
+      isUserSignedIn = true;
     } else {
       // User is not logged in
-      return false;
+      isUserSignedIn = false;
     }
   });
 };
 
-export const logoutUser = () => {
+export const LogoutUser = () => {
   firebase.auth().signOut();
 };
 
-export const signInUser = async ({ name, email, password }: AuthDetails) => {
+export const SignInUser = async ({ name, email, password }: AuthDetails) => {
   try {
     await firebase.auth().createUserWithEmailAndPassword(email, password);
     firebase.auth().currentUser?.updateProfile({
@@ -52,7 +54,7 @@ export const signInUser = async ({ name, email, password }: AuthDetails) => {
   }
 };
 
-export const loginUser = async ({ email, password }: AuthDetails) => {
+export const LoginUser = async ({ email, password }: AuthDetails) => {
   try {
     await firebase.auth().signInWithEmailAndPassword(email, password);
     return {};
@@ -79,7 +81,7 @@ export const loginUser = async ({ email, password }: AuthDetails) => {
   }
 };
 
-export const sendEmailWithPassword = async (email: string) => {
+export const SendEmailWithPassword = async (email: string) => {
   try {
     await firebase.auth().sendPasswordResetEmail(email);
     return {};
