@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Linking } from "expo";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { storage } from "../firebase/firebase";
+import { storage } from "../firebase";
+import { STORAGE_MAP } from "../firebase/constants";
 
-export function MainScreen() {
+const MainScreen = () => {
   const [profilePictureUrl, setProfilePictureUrl] = useState();
 
   storage
     .ref()
-    .child("Pictures")
+    .child(STORAGE_MAP.Profiles)
     .child("profilePicture.jpg")
     .getDownloadURL()
     .then((url) => setProfilePictureUrl(url));
@@ -46,8 +47,8 @@ export function MainScreen() {
       </TouchableOpacity>
     </View>
   );
-}
- 
+};
+
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
@@ -57,3 +58,5 @@ const styles = StyleSheet.create({
   header: { fontWeight: "bold" },
   image: { width: 400, height: 400, borderRadius: 400 / 2 },
 });
+
+export default MainScreen;
