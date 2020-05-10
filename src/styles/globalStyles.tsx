@@ -15,6 +15,7 @@ const globalStyles = StyleSheet.create({
     width: "33.3%", // is 50% of container width
   },
   header: { fontWeight: "bold" },
+  centeredText: {textAlign:'center'} ,
   image: { width: 100, height: 100, borderRadius: 100 / 2 },
   appStyle: {
     flex: 1,

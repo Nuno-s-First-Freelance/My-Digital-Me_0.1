@@ -22,7 +22,9 @@ const PersonalInfo = () => {
         source={{ uri: profilePictureUrl }}
         style={globalStyles.image}
       ></Image>
-      <Text>Nuno Miguel Fernandes Moreira</Text>
+      <Text style={globalStyles.centeredText}>
+        Nuno Miguel Fernandes Moreira
+      </Text>
     </View>
   );
 };
