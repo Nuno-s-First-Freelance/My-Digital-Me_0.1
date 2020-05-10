@@ -9,4 +9,5 @@ If you have a suggestion please go to
 
 https://github.com/Nuno-s-First-Freelance/My-Digital-Me/projects/1 
 
-You can add your suggestion under the "Suggestions" column 
+You can check if exists something related to your suggestion already.
+You can also send me any suggestion to: nuno.s.first.freelance@gmail.com
