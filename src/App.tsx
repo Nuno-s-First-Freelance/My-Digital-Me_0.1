@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { ScreenNavigator } from "./screens";
+import ScreenNavigator from './screens/ScreenNavigator'
 
 export default function App() {
   return (
