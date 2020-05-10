@@ -16,12 +16,13 @@ const PersonalInfo = () => {
 
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.header}>My Digital Me</Text>
-      <Image
-        // defaultSource={}
-        source={{ uri: profilePictureUrl }}
-        style={globalStyles.image}
-      ></Image>
+      <View style={globalStyles.imageContainer}>
+        <Image
+          // defaultSource={}
+          source={{ uri: profilePictureUrl }}
+          style={globalStyles.image}
+        ></Image>
+      </View>
       <Text style={globalStyles.centeredText}>
         Nuno Miguel Fernandes Moreira
       </Text>
