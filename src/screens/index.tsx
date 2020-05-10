@@ -4,6 +4,10 @@ export { default as RegisterScreen } from "./auth/RegisterScreen";
 export { default as ForgotPasswordScreen } from "./auth/ForgotPasswordScreen";
 export { default as ScreenNavigator } from "./ScreenNavigator";
 
+// These must be the same as in ScreenNavigator.tsx
 export const SCREENS = {
-
-}
+  LOGIN_SCREEN: "Login",
+  LOGOUT_SCREEN: "Logout",
+  REGISTER_SCREEN: "Register",
+  MAIN_SCREEN: "Main",
+};

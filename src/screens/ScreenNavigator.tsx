@@ -1,6 +1,6 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import { MainScreen, LoginScreen } from ".";
+import { MainScreen, LoginScreen, SCREENS } from ".";
 
 const ScreenNavigator = createStackNavigator(
   {
@@ -14,7 +14,7 @@ const ScreenNavigator = createStackNavigator(
         backgroundColor: "#000",
       },
     },
-    // initialRouteName: 'Login'
+    // initialRouteName: SCREENS.LOGIN_SCREEN
   }
 );
 
