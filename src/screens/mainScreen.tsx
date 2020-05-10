@@ -8,7 +8,7 @@ const MainScreen = () => {
   const [showSocialInfo, setShowSocialInfo] = useState(false);
   const [showProfessionalInfo, setShowProfessionalInfo] = useState(false);
 
-  // TODO: add management for small screen devices 
+  // TODO: add management for small screen devices
   // like hide columns by default
   return (
     <View style={globalStyles.mainContainer}>
@@ -19,6 +19,7 @@ const MainScreen = () => {
             <ProfessionalInfo />
           ) : (
             <Button
+              color="red"
               title={BUTTON_LABELS.SHOW_PROFESSIONAL_INFO}
               onPress={() => setShowProfessionalInfo(true)}
             ></Button>
@@ -32,6 +33,7 @@ const MainScreen = () => {
             <SocialInfo />
           ) : (
             <Button
+              color="green"
               title={BUTTON_LABELS.SHOW_SOCIAL_INFO}
               onPress={() => setShowSocialInfo(true)}
             ></Button>
