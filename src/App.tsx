@@ -1,20 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { MainScreen } from "./screens/MainScreen";
+import { View } from "react-native";
+import ScreenNavigator from "./screens/ScreenNavigator";
+import globalStyles from "./styles/globalStyles";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <MainScreen></MainScreen>
+    <View style={globalStyles.appStyle}>
+      <ScreenNavigator />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
