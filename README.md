@@ -3,7 +3,7 @@ My Digital Me is a personal project
 
 This project aims to help me learning about the full life cycle of a project
 
-:::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 If you have a suggestion please go to
 
