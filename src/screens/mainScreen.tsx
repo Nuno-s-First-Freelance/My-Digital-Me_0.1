@@ -1,33 +1,22 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { SocialInfo, PersonalInfo, ProfessionalInfo } from "../components";
+import globalStyles from "../styles/globalStyles";
 
 const MainScreen = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.column}>
-        <SocialInfo />
+    <View style={globalStyles.mainContainer}>
+      <View style={globalStyles.column}>
+        <ProfessionalInfo />
       </View>
-      <View style={styles.column}>
+      <View style={globalStyles.column}>
         <PersonalInfo />
       </View>
-      <View style={styles.column}>
-        <ProfessionalInfo />
+      <View style={globalStyles.column}>
+        <SocialInfo />
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "flex-start", // if you want to fill rows left to right
-  },
-  column: {
-    width: "33.3%", // is 50% of container width
-  },
-});
 
 export default MainScreen;

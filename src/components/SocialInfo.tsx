@@ -1,6 +1,7 @@
 import React from "react";
 import { Linking } from "expo";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
+import globalStyles from "../styles/globalStyles";
 
 const SocialInfo = () => {
   const linkedInUrl = "https://www.linkedin.com/in/nm-fullstack-dev/";
@@ -17,22 +18,16 @@ const SocialInfo = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.container}>
+      <Text style={globalStyles.header}>SocialInfo</Text>
       <TouchableOpacity onPress={() => openUrl(linkedInUrl)}>
-        <Text style={styles.link}>LinkedIn</Text>
+        <Text style={globalStyles.link}>LinkedIn</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => openUrl(gitHubUrl)}>
-        <Text style={styles.link}>GitHub</Text>
+        <Text style={globalStyles.link}>GitHub</Text>
       </TouchableOpacity>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-  },
-  link: { color: "blue" },
-});
 
 export default SocialInfo;

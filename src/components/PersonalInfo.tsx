@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, Image } from "react-native";
 import { STORAGE_MAP } from "../firebase/constants";
 import { storage } from "../firebase";
+import globalStyles from "../styles/globalStyles";
 
 const PersonalInfo = () => {
   const [profilePictureUrl, setProfilePictureUrl] = useState();
@@ -14,26 +15,16 @@ const PersonalInfo = () => {
     .then((url) => setProfilePictureUrl(url));
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>My Digital Me</Text>
+    <View style={globalStyles.container}>
+      <Text style={globalStyles.header}>My Digital Me</Text>
       <Image
         // defaultSource={}
         source={{ uri: profilePictureUrl }}
-        style={styles.image}
+        style={globalStyles.image}
       ></Image>
       <Text>Nuno Miguel Fernandes Moreira</Text>
-      <Text>Software Engineer</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  header: { fontWeight: "bold" },
-  image: { width: 100, height: 100, borderRadius: 100 / 2 },
-});
 
 export default PersonalInfo;
