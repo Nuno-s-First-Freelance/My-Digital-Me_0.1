@@ -14,6 +14,7 @@ const ScreenNavigator = createStackNavigator(
         backgroundColor: "#000",
       },
     },
+    headerMode: "none"
     // initialRouteName: SCREENS.LOGIN_SCREEN
   }
 );
