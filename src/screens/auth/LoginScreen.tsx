@@ -9,31 +9,35 @@ import Header from "../../components/imported/Header";
 import TextInput from "../../components/imported/TextInput";
 import { emailValidator, passwordValidator } from "../../helpers/authHelper";
 import Button from "../../components/imported/Button";
+import { isEmpty } from "../../helpers/stringHelper";
 
 const LoginScreen = ({ navigation }: any) => {
   const [authState, dispatch] = useReducer(authReducer, AuthState);
-  var email = { value: "", error: "" };
-  var password = { value: "", error: "" };
-  var loading = false;
+  var email = authState.authDetails.email;
+  var password = authState.authDetails.password;
+  var loading = authState.loading;
 
-  const _onLoginPressed = async () => {
+  const _onLoginPressed = () => {
     if (loading) return;
 
-    const emailError = emailValidator(email.value);
-    const passwordError = passwordValidator(password.value);
+    const emailError = emailValidator(email);
+    const passwordError = passwordValidator(password);
 
-    if (emailError || passwordError) {
-      email.error = emailError;
-      password.error = passwordError;
+    if (!isEmpty(emailError)) {
+      console.log("emailError", emailError);
+      return;
+    }
+    if (!isEmpty(passwordError)) {
+      console.log("passwordError", passwordError);
       return;
     }
 
-    loading = true;
+    dispatch(AuthActions.updateLoading(true));
 
     dispatch(
       AuthActions.logIn({
-        email: email.value,
-        password: password.value,
+        email: email,
+        password: password,
       })
     );
 
@@ -41,7 +45,8 @@ const LoginScreen = ({ navigation }: any) => {
     // //   setError(response.error);
     // // }
 
-    loading = false;
+    dispatch(AuthActions.updateLoading(false));
+    navigation.navigate(SCREENS.MAIN_SCREEN);
   };
 
   return (
@@ -53,10 +58,10 @@ const LoginScreen = ({ navigation }: any) => {
       <TextInput
         label="Email"
         returnKeyType="next"
-        value={email.value}
-        onChangeText={(text) => (email.value = text)}
-        error={!!email.error}
-        errorText={email.error}
+        value={email}
+        onChangeText={(text) => dispatch(AuthActions.updateEmail(text))}
+        // error={!!email.error}
+        // errorText={email.error}
         autoCapitalize="none"
         autoCompleteType="email"
         textContentType="emailAddress"
@@ -66,10 +71,10 @@ const LoginScreen = ({ navigation }: any) => {
       <TextInput
         label="Password"
         returnKeyType="done"
-        value={password.value}
-        onChangeText={(text) => (password.value = text)}
-        error={!!password.error}
-        errorText={password.error}
+        value={password}
+        onChangeText={(text) => dispatch(AuthActions.updatePassword(text))}
+        // error={!!password.error}
+        // errorText={password.error}
         secureTextEntry
         autoCapitalize="none"
       />

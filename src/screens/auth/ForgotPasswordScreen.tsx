@@ -9,25 +9,26 @@ import { authReducer, AuthState, AuthActions } from "../../redux/AuthReducer";
 import { emailValidator } from "../../helpers/authHelper";
 import Header from "../../components/imported/Header";
 import Background from "../../components/imported/Background";
+import { isEmpty } from "../../helpers/stringHelper";
 
 const ForgotPasswordScreen = ({ navigation }: any) => {
   const [authState, dispatch] = useReducer(authReducer, AuthState);
-  var email = { value: "", error: "" };
-  var loading = false;
+  var email = authState.authDetails.email;
+  var loading = authState.loading;
 
   const _onSendPressed = async () => {
     if (loading) return;
 
-    const emailError = emailValidator(email.value);
+    const emailError = emailValidator(email);
 
-    if (emailError) {
-      email.error = emailError;
+    if (!isEmpty(emailError)) {
+      console.log("emailError", emailError);
       return;
     }
 
-    loading = true;
+    dispatch(AuthActions.updateLoading(true));
 
-    const response = dispatch(AuthActions.recoverPassword(email.value));
+    const response = dispatch(AuthActions.recoverPassword(email));
 
     // do toast error handling in store :D
     // // if (response.error) {
@@ -39,7 +40,7 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
     // //   });
     // // }
 
-    loading = false;
+    dispatch(AuthActions.updateLoading(false));
   };
 
   return (
@@ -51,10 +52,10 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
       <TextInput
         label="E-mail address"
         returnKeyType="done"
-        value={email.value}
-        onChangeText={(text) => (email.value = text)}
-        error={!!email.error}
-        errorText={email.error}
+        value={email}
+        onChangeText={(text) => dispatch(AuthActions.updateEmail(text))}
+        // error={!!email.error}
+        // errorText={email.error}
         autoCapitalize="none"
         autoCompleteType="email"
         textContentType="emailAddress"
