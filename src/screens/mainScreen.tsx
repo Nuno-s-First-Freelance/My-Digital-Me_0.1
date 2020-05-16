@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { View, Text, Button } from "react-native";
 import { SocialInfo, PersonalInfo, ProfessionalInfo } from "../components";
 import globalStyles from "../styles/globalStyles";
 import { BUTTON_LABELS } from "../constants/ButtonLabels";
+import {
+  rootReducer,
+  initialState,
+  actions,
+} from "../redux/reducer";
 
 const MainScreen = () => {
   const [showSocialInfo, setShowSocialInfo] = useState(false);
   const [showProfessionalInfo, setShowProfessionalInfo] = useState(false);
+  
+  const [state, dispatch] = useReducer(rootReducer, initialState);
+
+  console.log("State Name", state.name);
 
   // TODO: add management for small screen devices
   // like hide columns by default
@@ -21,7 +30,10 @@ const MainScreen = () => {
             <Button
               color="red"
               title={BUTTON_LABELS.SHOW_PROFESSIONAL_INFO}
-              onPress={() => setShowProfessionalInfo(true)}
+              onPress={() => {
+                setShowProfessionalInfo(true);
+                dispatch(actions.CHANGE_NAME({ name: "hello" }));
+              }}
             ></Button>
           )}
         </View>
