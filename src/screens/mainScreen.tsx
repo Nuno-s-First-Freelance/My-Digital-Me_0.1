@@ -1,21 +1,19 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
 import { View, Text, Button } from "react-native";
 import { SocialInfo, PersonalInfo, ProfessionalInfo } from "../components";
 import globalStyles from "../styles/globalStyles";
-import { BUTTON_LABELS } from "../constants/ButtonLabels";
+import { BUTTON_LABELS } from "../constants/ButtonLabels.constant";
 import {
-  rootReducer,
-  initialState,
-  actions,
-} from "../redux/reducer";
+  profileReducer,
+  ProfileState,
+  ProfileActions,
+} from "../redux/profileReducer";
 
 const MainScreen = () => {
-  const [showSocialInfo, setShowSocialInfo] = useState(false);
-  const [showProfessionalInfo, setShowProfessionalInfo] = useState(false);
-  
-  const [state, dispatch] = useReducer(rootReducer, initialState);
+  const [profileState, dispatch] = useReducer(profileReducer, ProfileState);
 
-  console.log("State Name", state.name);
+  const showWorkInfo = profileState.isWorkInfoOpen;
+  const showSocialInfo = profileState.isSocialInfoOpen;
 
   // TODO: add management for small screen devices
   // like hide columns by default
@@ -24,16 +22,13 @@ const MainScreen = () => {
       <Text style={globalStyles.header}>My Digital Me</Text>
       <View style={globalStyles.navigatorContainer}>
         <View style={globalStyles.column}>
-          {showProfessionalInfo ? (
+          {showWorkInfo ? (
             <ProfessionalInfo />
           ) : (
             <Button
               color="red"
-              title={BUTTON_LABELS.SHOW_PROFESSIONAL_INFO}
-              onPress={() => {
-                setShowProfessionalInfo(true);
-                dispatch(actions.CHANGE_NAME({ name: "hello" }));
-              }}
+              title={BUTTON_LABELS.SHOW_WORK_INFO}
+              onPress={() => dispatch(ProfileActions.showWorkInfo(true))}
             ></Button>
           )}
         </View>
@@ -47,7 +42,7 @@ const MainScreen = () => {
             <Button
               color="green"
               title={BUTTON_LABELS.SHOW_SOCIAL_INFO}
-              onPress={() => setShowSocialInfo(true)}
+              onPress={() => dispatch(ProfileActions.showSocialInfo(true))}
             ></Button>
           )}
         </View>
