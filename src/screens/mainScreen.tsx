@@ -9,7 +9,7 @@ import {
 } from "../redux/ProfileReducer";
 import { BUTTON_LABELS } from "../constants";
 
-const MainScreen = () => {
+const MainScreen = ({ navigation }: any) => {
   const [profileState, dispatch] = useReducer(profileReducer, ProfileState);
 
   const showWorkInfo = profileState.isWorkInfoOpen;
