@@ -6,7 +6,7 @@ import {
   profileReducer,
   ProfileState,
   ProfileActions,
-} from "../redux/profileReducer";
+} from "../redux/ProfileReducer";
 import { BUTTON_LABELS } from "../constants";
 
 const MainScreen = () => {
