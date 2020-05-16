@@ -6,7 +6,7 @@ export { default as ForgotPasswordScreen } from "./auth/ForgotPasswordScreen";
 // These must be the same as in ScreenNavigator.tsx
 export const SCREENS = {
   LOGIN_SCREEN: "Login",
-  LOGOUT_SCREEN: "Logout",
+  FORGOT_PASSWORD_SCREEN: "Logout",
   REGISTER_SCREEN: "Register",
   MAIN_SCREEN: "Main",
 };

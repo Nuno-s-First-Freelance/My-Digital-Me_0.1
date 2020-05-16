@@ -2,20 +2,6 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { AuthDetails } from "./constants";
 
-export var isUserSignedIn = false;
-
-export const onAuthStateChangedEvent = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // User is logged in
-      isUserSignedIn = true;
-    } else {
-      // User is not logged in
-      isUserSignedIn = false;
-    }
-  });
-};
-
 export const LogoutUser = () => {
   firebase.auth().signOut();
 };

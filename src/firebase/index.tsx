@@ -14,7 +14,6 @@ export {
   LoginUser,
   SendEmailWithPassword,
   SignInUser,
-  isUserSignedIn,
 } from "./auth-api";
 
 export { app as initializeFirebase };

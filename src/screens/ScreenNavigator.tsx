@@ -1,11 +1,19 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import { MainScreen, LoginScreen, SCREENS } from ".";
+import {
+  MainScreen,
+  LoginScreen,
+  SCREENS,
+  ForgotPasswordScreen,
+  RegisterScreen,
+} from ".";
 
 const ScreenNavigator = createStackNavigator(
   {
-    // Login: LoginScreen,
-    Main: MainScreen,
+    [SCREENS.LOGIN_SCREEN]: LoginScreen,
+    [SCREENS.REGISTER_SCREEN]: RegisterScreen,
+    [SCREENS.FORGOT_PASSWORD_SCREEN]: ForgotPasswordScreen,
+    [SCREENS.MAIN_SCREEN]: MainScreen,
   },
   {
     navigationOptions: {
@@ -14,8 +22,8 @@ const ScreenNavigator = createStackNavigator(
         backgroundColor: "#000",
       },
     },
-    headerMode: "none"
-    // initialRouteName: SCREENS.LOGIN_SCREEN
+    headerMode: "none",
+    initialRouteName: SCREENS.LOGIN_SCREEN,
   }
 );
 
