@@ -2,12 +2,12 @@ import React, { useReducer } from "react";
 import { View, Text, Button } from "react-native";
 import { SocialInfo, PersonalInfo, ProfessionalInfo } from "../components";
 import globalStyles from "../styles/globalStyles";
-import { BUTTON_LABELS } from "../constants/ButtonLabels.constant";
 import {
   profileReducer,
   ProfileState,
   ProfileActions,
 } from "../redux/profileReducer";
+import { BUTTON_LABELS } from "../constants";
 
 const MainScreen = () => {
   const [profileState, dispatch] = useReducer(profileReducer, ProfileState);
