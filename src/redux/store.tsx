@@ -1,10 +1,19 @@
-import { createStore } from "redux";
-import { ProfileState } from "./ProfileReducer";
-import { AuthState } from "./AuthReducer";
+import { createStore, combineReducers } from "redux";
+import { profileReducer, IProfileState } from "./ProfileReducer";
+import { authReducer, IAuthState } from "./AuthReducer";
+import { toasterReducer, IToasterState } from "./ToasterReducer";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-export const initialState = {
-  profileState: ProfileState,
-  authState: AuthState
-};
+export interface IStoreState {
+  auth: IAuthState;
+  toaster: IToasterState;
+  profile: IProfileState;
+}
 
-export const store = createStore((initialState, action) => initialState);
+export const reducers = combineReducers({
+  toaster: toasterReducer,
+  profile: profileReducer,
+  auth: authReducer,
+});
+
+export const store = createStore(reducers, composeWithDevTools());

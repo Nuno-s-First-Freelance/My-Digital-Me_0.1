@@ -1,36 +1,52 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { theme } from "../../components/imported/theme";
-import { authReducer, AuthState, AuthActions } from "../../redux/AuthReducer";
+import { AuthActions } from "../../redux/AuthReducer";
 import { emailValidator, passwordValidator } from "../../helpers/authHelper";
 import Background from "../../components/imported/Background";
-import BackButton from "../../components/imported/BackButton";
 import Header from "../../components/imported/Header";
 import TextInput from "../../components/imported/TextInput";
 import Button from "../../components/imported/Button";
 import { SCREENS } from "..";
 import { isEmpty } from "../../helpers/stringHelper";
+import { useSelector, useDispatch } from "react-redux";
+import { IStoreState } from "../../redux/store";
+import { ToasterActions } from "../../redux/ToasterReducer";
+import { ToasterType } from "../../components/imported/Toast";
 
 const RegisterScreen = ({ navigation }: any) => {
-  const [authState, dispatch] = useReducer(authReducer, AuthState);
+  const authState = useSelector((state: IStoreState) => state.auth);
+  const dispatch = useDispatch();
+
   var email = authState.authDetails.email;
   var password = authState.authDetails.password;
   var loading = authState.loading;
 
+  var emailError = "";
+  var passwordError = "";
+
   const _onSignUpPressed = async () => {
     if (loading) return;
 
-    // const nameError = nameValidator(name.value);
-    const emailError = emailValidator(email);
-    const passwordError = passwordValidator(password);
+    emailError = emailValidator(email);
+    passwordError = passwordValidator(password);
 
-    // if (emailError || passwordError || nameError) {
     if (!isEmpty(emailError)) {
-      console.log("emailError", emailError);
+      dispatch(
+        ToasterActions.updateToaster({
+          message: emailError,
+          type: ToasterType.error,
+        })
+      );
       return;
     }
     if (!isEmpty(passwordError)) {
-      console.log("passwordError", passwordError);
+      dispatch(
+        ToasterActions.updateToaster({
+          message: passwordError,
+          type: ToasterType.error,
+        })
+      );
       return;
     }
 
@@ -38,17 +54,15 @@ const RegisterScreen = ({ navigation }: any) => {
 
     dispatch(
       AuthActions.register({
-        // name: name.value,
         email: email,
         password: password,
       })
     );
 
-    // if (response.error) {
-    //   setError(response.error);
-    // }
-
     dispatch(AuthActions.updateLoading(false));
+
+    // todo if no error
+    navigation.navigate(SCREENS.LOGIN_SCREEN);
   };
 
   return (
@@ -70,9 +84,16 @@ const RegisterScreen = ({ navigation }: any) => {
         label="Email"
         returnKeyType="next"
         value={email}
-        onChangeText={(text) => dispatch(AuthActions.updateEmail(text))}
-        // error={!!email.error}
-        // errorText={email.error}
+        onChangeText={(newEmail) =>
+          dispatch(
+            AuthActions.updateAuthDetails({
+              email: newEmail,
+              password: passwordError,
+            })
+          )
+        }
+        error={!!emailError}
+        errorText={emailError}
         autoCapitalize="none"
         autoCompleteType="email"
         textContentType="emailAddress"
@@ -83,9 +104,16 @@ const RegisterScreen = ({ navigation }: any) => {
         label="Password"
         returnKeyType="done"
         value={password}
-        onChangeText={(text) => dispatch(AuthActions.updatePassword(text))}
-        // error={!!password.error}
-        // errorText={password.error}
+        onChangeText={(newPassword) =>
+          dispatch(
+            AuthActions.updateAuthDetails({
+              email: email,
+              password: newPassword,
+            })
+          )
+        }
+        error={!!passwordError}
+        errorText={passwordError}
         secureTextEntry
         autoCapitalize="none"
       />
@@ -107,8 +135,6 @@ const RegisterScreen = ({ navigation }: any) => {
           <Text style={styles.link}>Login</Text>
         </TouchableOpacity>
       </View>
-
-      {/* <Toast message={error} onDismiss={() => setError("")} /> */}
     </Background>
   );
 };

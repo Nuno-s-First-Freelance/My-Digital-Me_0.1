@@ -7,21 +7,22 @@ import {
   SendEmailWithPassword,
 } from "../firebase";
 
-interface IAuthState {
+export interface IAuthState {
   authDetails: AuthDetails;
   isUserOnline: boolean;
+  errorMessage: string;
   loading: boolean;
 }
 
 export const AuthState: IAuthState = {
   authDetails: { email: "", password: "" },
   isUserOnline: false,
+  errorMessage: "",
   loading: false,
 };
 
 export const AuthActionTypes = {
-  UPDATE_EMAIL: "UPDATE_EMAIL",
-  UPDATE_PASSWORD: "UPDATE_PASSWORD",
+  UPDATE_AUTH_DETAILS: "UPDATE_AUTH_DETAILS",
   UPDATE_LOADING: "UPDATE_LOADING",
   LOG_IN: "LOG_IN",
   LOG_OUT: "LOG_OUT",
@@ -30,8 +31,9 @@ export const AuthActionTypes = {
 };
 
 export const AuthActions = {
-  updateEmail: createAction<string>(AuthActionTypes.UPDATE_EMAIL),
-  updatePassword: createAction<string>(AuthActionTypes.UPDATE_PASSWORD),
+  updateAuthDetails: createAction<AuthDetails>(
+    AuthActionTypes.UPDATE_AUTH_DETAILS
+  ),
   updateLoading: createAction<boolean>(AuthActionTypes.UPDATE_LOADING),
   logOut: createAction(AuthActionTypes.LOG_OUT),
   logIn: createAction<AuthDetails>(AuthActionTypes.LOG_IN),
@@ -43,11 +45,11 @@ export const authReducer = createReducer(AuthState, {
   [AuthActionTypes.UPDATE_LOADING]: (state, action: PayloadAction<boolean>) => {
     state.loading = action.payload;
   },
-  [AuthActionTypes.UPDATE_EMAIL]: (state, action: PayloadAction<string>) => {
-    state.authDetails.email = action.payload;
-  },
-  [AuthActionTypes.UPDATE_PASSWORD]: (state, action: PayloadAction<string>) => {
-    state.authDetails.password = action.payload;
+  [AuthActionTypes.UPDATE_AUTH_DETAILS]: (
+    state,
+    action: PayloadAction<AuthDetails>
+  ) => {
+    state.authDetails = action.payload;
   },
   [AuthActionTypes.LOG_IN]: (state, action: PayloadAction<AuthDetails>) => {
     LoginUser({
@@ -55,12 +57,17 @@ export const authReducer = createReducer(AuthState, {
       password: action.payload.password,
     })
       .then((result) => {
-        console.log("login done", result);
-        state.isUserOnline = true;
+        if (!!result.error) {
+          state.errorMessage = result.error;
+          console.log("login failed", result.error);
+          state.isUserOnline = false;
+        } else {
+          state.errorMessage = "";
+          state.isUserOnline = true;
+        }
       })
       .catch((result) => {
         console.log("login failed", result);
-        // dispatch result ?
       });
   },
   [AuthActionTypes.REGISTER]: (state, action: PayloadAction<AuthDetails>) => {
@@ -91,7 +98,7 @@ export const authReducer = createReducer(AuthState, {
         // dispatch success ?
       });
   },
-  [AuthActionTypes.LOG_OUT]: (state, action: PayloadAction) => {
+  [AuthActionTypes.LOG_OUT]: (state) => {
     LogoutUser();
     state.isUserOnline = false;
   },

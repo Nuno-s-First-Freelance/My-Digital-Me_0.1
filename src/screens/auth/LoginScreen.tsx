@@ -1,8 +1,7 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { authReducer, AuthState, AuthActions } from "../../redux/AuthReducer";
+import { AuthActions } from "../../redux/AuthReducer";
 import { SCREENS } from "..";
-import { BUTTON_LABELS } from "../../constants";
 import { theme } from "../../components/imported/theme";
 import Background from "../../components/imported/Background";
 import Header from "../../components/imported/Header";
@@ -10,25 +9,46 @@ import TextInput from "../../components/imported/TextInput";
 import { emailValidator, passwordValidator } from "../../helpers/authHelper";
 import Button from "../../components/imported/Button";
 import { isEmpty } from "../../helpers/stringHelper";
+import { ToasterActions } from "../../redux/ToasterReducer";
+import { ToasterType } from "../../components/imported/Toast";
+import { IStoreState } from "../../redux/store";
+import { useSelector, useDispatch } from "react-redux";
 
 const LoginScreen = ({ navigation }: any) => {
-  const [authState, dispatch] = useReducer(authReducer, AuthState);
-  var email = authState.authDetails.email;
-  var password = authState.authDetails.password;
-  var loading = authState.loading;
+  const authState = useSelector((state: IStoreState) => state.auth);
+  const dispatch = useDispatch();
+
+  var email: string = authState.authDetails.email;
+  var password: string = authState.authDetails.password;
+  var loading: boolean = authState.loading;
+
+  var emailError = "";
+  var passwordError = "";
+  const loginError = authState.errorMessage;
+  const isUserOnline = authState.isUserOnline;
 
   const _onLoginPressed = () => {
     if (loading) return;
 
-    const emailError = emailValidator(email);
-    const passwordError = passwordValidator(password);
+    emailError = emailValidator(email);
+    passwordError = passwordValidator(password);
 
     if (!isEmpty(emailError)) {
-      console.log("emailError", emailError);
+      dispatch(
+        ToasterActions.updateToaster({
+          message: emailError,
+          type: ToasterType.error,
+        })
+      );
       return;
     }
     if (!isEmpty(passwordError)) {
-      console.log("passwordError", passwordError);
+      dispatch(
+        ToasterActions.updateToaster({
+          message: passwordError,
+          type: ToasterType.error,
+        })
+      );
       return;
     }
 
@@ -41,27 +61,31 @@ const LoginScreen = ({ navigation }: any) => {
       })
     );
 
-    // // if (response.error) {
-    // //   setError(response.error);
-    // // }
-
     dispatch(AuthActions.updateLoading(false));
-    navigation.navigate(SCREENS.MAIN_SCREEN);
+    if (isUserOnline) navigation.navigate(SCREENS.MAIN_SCREEN);
   };
 
   return (
     <Background>
-      {/* <BackButton goBack={() => navigation.navigate("HomeScreen")} /> */}
-
+      {/* {loading && (
+        <ActivityIndicator size="large" color={theme.colors.primary} />
+      )} */}
       <Header>Welcome back.</Header>
 
       <TextInput
         label="Email"
         returnKeyType="next"
         value={email}
-        onChangeText={(text) => dispatch(AuthActions.updateEmail(text))}
-        // error={!!email.error}
-        // errorText={email.error}
+        onChangeText={(newEmail) =>
+          dispatch(
+            AuthActions.updateAuthDetails({
+              email: newEmail,
+              password: password,
+            })
+          )
+        }
+        error={!!emailError}
+        errorText={emailError}
         autoCapitalize="none"
         autoCompleteType="email"
         textContentType="emailAddress"
@@ -72,9 +96,16 @@ const LoginScreen = ({ navigation }: any) => {
         label="Password"
         returnKeyType="done"
         value={password}
-        onChangeText={(text) => dispatch(AuthActions.updatePassword(text))}
-        // error={!!password.error}
-        // errorText={password.error}
+        onChangeText={(newPassword) =>
+          dispatch(
+            AuthActions.updateAuthDetails({
+              email: email,
+              password: newPassword,
+            })
+          )
+        }
+        error={!!passwordError}
+        errorText={passwordError}
         secureTextEntry
         autoCapitalize="none"
       />
@@ -99,8 +130,6 @@ const LoginScreen = ({ navigation }: any) => {
           <Text style={styles.link}>Sign up</Text>
         </TouchableOpacity>
       </View>
-
-      {/* <Toast message={error} onDismiss={() => setError("")} /> */}
     </Background>
   );
 };

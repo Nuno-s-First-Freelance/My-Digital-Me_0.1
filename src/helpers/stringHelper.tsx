@@ -1,1 +1,1 @@
-export const isEmpty = (str: string): boolean => str === "";
+export const isEmpty = (str: string | undefined): boolean => str === "";
