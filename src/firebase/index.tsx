@@ -9,6 +9,11 @@ export const database = app.database();
 // File Cloud Storage
 export const storage = app.storage();
 
-export function Login() {}
-export function Logout() {}
-export function Register() {}
+export {
+  LogoutUser,
+  LoginUser,
+  SendEmailWithPassword,
+  SignInUser,
+} from "./auth-api";
+
+export { app as initializeFirebase };
