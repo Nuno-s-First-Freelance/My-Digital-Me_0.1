@@ -7,12 +7,12 @@ import Background from "../../components/imported/Background";
 import Header from "../../components/imported/Header";
 import TextInput from "../../components/imported/TextInput";
 import Button from "../../components/imported/Button";
-import { SCREENS } from "..";
 import { isEmpty } from "../../helpers/stringHelper";
 import { useSelector, useDispatch } from "react-redux";
 import { IStoreState } from "../../redux/store";
 import { ToasterActions } from "../../redux/ToasterReducer";
 import { ToasterType } from "../../components/imported/Toast";
+import { SCREENS } from "../../constants";
 
 const RegisterScreen = ({ navigation }: any) => {
   const authState = useSelector((state: IStoreState) => state.auth);

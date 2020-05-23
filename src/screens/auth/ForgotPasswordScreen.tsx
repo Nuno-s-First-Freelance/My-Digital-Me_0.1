@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import { SCREENS } from "..";
 import TextInput from "../../components/imported/TextInput";
 import { theme } from "../../components/imported/theme";
 import Button from "../../components/imported/Button";
@@ -13,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { IStoreState } from "../../redux/store";
 import { ToasterActions } from "../../redux/ToasterReducer";
 import { ToasterType } from "../../components/imported/Toast";
+import { SCREENS } from "../../constants";
 
 const ForgotPasswordScreen = ({ navigation }: any) => {
   const authState = useSelector((state: IStoreState) => state.auth);

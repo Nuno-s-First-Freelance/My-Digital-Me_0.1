@@ -1,12 +1,10 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import {
-  MainScreen,
-  LoginScreen,
-  SCREENS,
-  ForgotPasswordScreen,
-  RegisterScreen,
-} from ".";
+import LoginScreen from "./auth/LoginScreen";
+import RegisterScreen from "./auth/RegisterScreen";
+import ForgotPasswordScreen from "./auth/ForgotPasswordScreen";
+import MainScreen from "./mainScreen";
+import { SCREENS } from "../constants";
 
 const ScreenNavigator = createStackNavigator(
   {

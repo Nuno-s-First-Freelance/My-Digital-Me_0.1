@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AuthActions } from "../../redux/AuthReducer";
-import { SCREENS } from "..";
 import { theme } from "../../components/imported/theme";
 import Background from "../../components/imported/Background";
 import Header from "../../components/imported/Header";
@@ -13,6 +12,7 @@ import { ToasterActions } from "../../redux/ToasterReducer";
 import { ToasterType } from "../../components/imported/Toast";
 import { IStoreState } from "../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
+import { SCREENS } from "../../constants";
 
 const LoginScreen = ({ navigation }: any) => {
   const authState = useSelector((state: IStoreState) => state.auth);
