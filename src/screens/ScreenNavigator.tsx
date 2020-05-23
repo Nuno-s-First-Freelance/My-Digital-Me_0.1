@@ -23,7 +23,7 @@ const ScreenNavigator = createStackNavigator(
       },
     },
     headerMode: "none",
-    initialRouteName: SCREENS.LOGIN_SCREEN,
+    initialRouteName: SCREENS.MAIN_SCREEN,
   }
 );
 

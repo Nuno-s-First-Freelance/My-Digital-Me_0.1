@@ -79,7 +79,7 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
         error={!!emailError}
         errorText={emailError}
         autoCapitalize="none"
-        autoCompleteType="email"
+        // autoCompleteType="email"
         textContentType="emailAddress"
         keyboardType="email-address"
       />

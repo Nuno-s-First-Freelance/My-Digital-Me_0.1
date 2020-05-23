@@ -1,6 +1,5 @@
 import React from "react";
-import { Linking } from "expo";
-import { View, TouchableOpacity, Text } from "react-native";
+import { View, TouchableOpacity, Text, Linking } from "react-native";
 import globalStyles from "../styles/globalStyles";
 
 const SocialInfo = () => {
