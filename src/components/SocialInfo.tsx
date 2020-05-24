@@ -6,14 +6,19 @@ import globalStyles from "../styles/globalStyles";
 import * as accInfo from "../assets/personal/appInfo.json";
 
 const SocialInfo = () => {
-  const [profilePictureUrl, setProfilePictureUrl] = useState();
-
   return (
     <View style={globalStyles.infoDisplay}>
-      <Text style={globalStyles.text}>Name: {accInfo.PersonalInfo.name}</Text>
-      <Text style={globalStyles.text}>Age: {accInfo.PersonalInfo.age}</Text>
       <Text style={globalStyles.text}>
-        Gender: {accInfo.PersonalInfo.gender}
+        Personal Email: {accInfo.contactDetails.personalEmail}
+      </Text>
+      <Text style={globalStyles.text}>
+        Personal Phone: {accInfo.contactDetails.personalMobilePhone}
+      </Text>
+      <Text style={globalStyles.text}>
+        Skype: {accInfo.contactDetails.skype}
+      </Text>
+      <Text style={globalStyles.text}>
+        Instagram: {accInfo.contactDetails.instagram}
       </Text>
     </View>
   );

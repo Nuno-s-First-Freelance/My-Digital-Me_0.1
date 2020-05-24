@@ -2,19 +2,21 @@
   "PersonalInfo": {
     "name": "Nuno Miguel Fernandes Moreira",
     "age": 26,
-    "gender": "male"
+    "gender": "male",
+    "nationality": "Portuguese-PT"
   },
   "contactDetails": {
     "personalEmail": "nunomoreira16@gmail.com",
-    "personalMobilePhone": "+3375767834576",
+    "personalMobilePhone": "+33 75767834576",
     "professionalEmail": "nuno.s.first.freelance@gmail.com",
     "professionalMobilePhone": "",
     "skype": "live:nunomoreira16",
-    "instagram":"@nuno_s_first"
+    "instagram": "@nuno_s_first"
   },
   "professional": {
-    "jobPosition": "Software Engineer",
-    "jobDescription": ""
+    "currentEmployer": "Altran",
+    "currentJobPosition": "Software Engineer",
+    "currentJobDescription": ""
   },
   "socialLinks": {
     "linkedin": "https://www.linkedin.com/in/nm-fs-sw-engineer/",

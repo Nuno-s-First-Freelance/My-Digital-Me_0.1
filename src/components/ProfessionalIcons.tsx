@@ -6,9 +6,8 @@ import globalStyles from "../styles/globalStyles";
 import { accInfo } from "../assets/personal";
 import { useDispatch, useSelector } from "react-redux";
 import { IStoreState } from "../redux/store";
-import {
-  ProfessionalInfoActions,
-} from "../redux/ProfessionalInfoReducer";
+import { ProfessionalInfoActions } from "../redux/ProfessionalInfoReducer";
+import { SocialInfoActions } from "../redux/SocialInfoReducer";
 
 const ProfessionalIcons = () => {
   const professionalInfoState = useSelector(
@@ -17,7 +16,7 @@ const ProfessionalIcons = () => {
   const dispatch = useDispatch();
 
   const isWorkInfoOpen = professionalInfoState.isWorkInfoOpen;
-  console.log("professional", isWorkInfoOpen);
+
   return (
     <>
       {Platform.OS === "web" && (
@@ -38,9 +37,10 @@ const ProfessionalIcons = () => {
       <IconButton
         icon={isWorkInfoOpen ? "briefcase-upload" : "briefcase-download"}
         size={50}
-        onPress={() =>
-          dispatch(ProfessionalInfoActions.showWorkInfo(!isWorkInfoOpen))
-        }
+        onPress={() => {
+          dispatch(ProfessionalInfoActions.showWorkInfo(!isWorkInfoOpen));
+          dispatch(SocialInfoActions.showSocialInfo(false));
+        }}
         color={theme.colors.secondary}
       />
     </>

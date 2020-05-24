@@ -6,21 +6,28 @@ import {
   ProfessionalIcons,
   SocialIcons,
   ProfessionalInfo,
+  SocialInfo,
+  PersonalInfo,
 } from "../components";
 import { useSelector } from "react-redux";
 import { IStoreState } from "../redux/store";
 
 const MainScreen = () => {
-  const professionalInfoState = useSelector(
+  const professionalState = useSelector(
     (state: IStoreState) => state.professional
   );
-  const isWorkInfoOpen = professionalInfoState.isWorkInfoOpen;
-  console.log("main", isWorkInfoOpen);
+  const personalState = useSelector((state: IStoreState) => state.personal);
+  const socialState = useSelector((state: IStoreState) => state.social);
+
+  const isWorkInfoOpen = professionalState.isWorkInfoOpen;
+  const isSocialInfoOpen = socialState.isSocialInfoOpen;
+  const isPersonalInfoOpen = personalState.isPersonalInfoOpen;
+
   return (
     <View style={globalStyles.mainContainer}>
       {/* <Header text={"My Digital Me"}></Header> */}
       <View style={globalStyles.navigatorContainer}>
-        {/* <PersonalInfo /> */}
+        {isPersonalInfoOpen && <PersonalInfo />}
       </View>
       <View style={globalStyles.navigatorContainer}>
         <View style={globalStyles.column_3}>
@@ -39,8 +46,8 @@ const MainScreen = () => {
         </View>
       </View>
       <View style={globalStyles.navigatorContainer}>
-        {isWorkInfoOpen && <ProfessionalInfo />}
-        {/* <SocialInfo /> */}
+        {isWorkInfoOpen && !isSocialInfoOpen && <ProfessionalInfo />}
+        {isSocialInfoOpen && !isWorkInfoOpen && <SocialInfo />}
       </View>
     </View>
   );

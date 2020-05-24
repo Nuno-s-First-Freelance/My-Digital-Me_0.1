@@ -40,7 +40,6 @@ export const professionalInfoReducer = createReducer(ProfessionalInfoState, {
     state,
     action: PayloadAction<boolean>
   ) => {
-    console.log("I was called with", action.payload);
-    return { ...state, isWorkInfoOpen: action.payload };
+    state.isWorkInfoOpen = action.payload;
   },
 });

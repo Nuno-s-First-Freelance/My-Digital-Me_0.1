@@ -1,15 +1,9 @@
+import { IPersonalInfo } from "./IPersonalInfo";
 import { IProfessionalInfo } from "./IProfessionalInfo";
+import { ISocialInfo } from "./ISocialInfo";
 
 export interface IProfile {
-  personalInfo: {
-    name: string;
-    email: string;
-  };
+  personalInfo: IPersonalInfo;
   professionalInfo: IProfessionalInfo;
-  socialInfo: {
-    linkedIn: string;
-    gitHub: string;
-    facebook: string;
-    instagram: string;
-  };
+  socialInfo: ISocialInfo;
 }
