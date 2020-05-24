@@ -20,6 +20,7 @@ const globalStyles = StyleSheet.create({
   },
   column_1: {
     alignItems: "center",
+    justifyContent: "center",
     width: "99%",
   },
   column_3: {
@@ -27,8 +28,18 @@ const globalStyles = StyleSheet.create({
     justifyContent: "center",
     width: "33.3%",
   },
-  centeredText: { textAlign: "center" },
-  image_round: { width: 200, height: 200, borderRadius: 200 / 2 },
+  text: {
+    fontFamily: theme.fonts.thin.fontFamily,
+    fontWeight: theme.fonts.thin.fontWeight,
+  },
+  textHeader: {
+    textAlign: "center",
+    fontWeight: theme.fonts.medium.fontWeight,
+    color: theme.colors.primary,
+  },
+  infoDisplay: {
+    padding: 50,
+  },
   imageContainer: {
     padding: 50,
   },

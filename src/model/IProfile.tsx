@@ -1,11 +1,11 @@
+import { IProfessionalInfo } from "./IProfessionalInfo";
+
 export interface IProfile {
   personalInfo: {
     name: string;
     email: string;
   };
-  workInfo: {
-    profession: string;
-  };
+  professionalInfo: IProfessionalInfo;
   socialInfo: {
     linkedIn: string;
     gitHub: string;

@@ -2,7 +2,7 @@
   "PersonalInfo": {
     "name": "Nuno Miguel Fernandes Moreira",
     "age": 26,
-    "sex": "male"
+    "gender": "male"
   },
   "contactDetails": {
     "personalEmail": "nunomoreira16@gmail.com",

@@ -1,30 +1,20 @@
-import React from "react";
-import { View, TouchableOpacity, Text, Linking } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image } from "react-native";
+import { STORAGE_MAP } from "../firebase/constants";
+import { storage } from "../firebase";
 import globalStyles from "../styles/globalStyles";
+import * as accInfo from "../assets/personal/appInfo.json";
 
 const SocialInfo = () => {
-  const linkedInUrl = "https://www.linkedin.com/in/nm-fullstack-dev/";
-  const gitHubUrl = "https://github.com/Nuno-s-First-Freelance";
-
-  const openUrl = (url: string) => {
-    Linking.canOpenURL(url).then((supported) => {
-      if (supported) {
-        Linking.openURL(url);
-      } else {
-        console.log("Don't know how to open URI: " + linkedInUrl);
-      }
-    });
-  };
+  const [profilePictureUrl, setProfilePictureUrl] = useState();
 
   return (
-    <View style={globalStyles.container}>
-      <Text style={globalStyles.header}>SocialInfo</Text>
-      <TouchableOpacity onPress={() => openUrl(linkedInUrl)}>
-        <Text style={globalStyles.link}>LinkedIn</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => openUrl(gitHubUrl)}>
-        <Text style={globalStyles.link}>GitHub</Text>
-      </TouchableOpacity>
+    <View style={globalStyles.infoDisplay}>
+      <Text style={globalStyles.text}>Name: {accInfo.PersonalInfo.name}</Text>
+      <Text style={globalStyles.text}>Age: {accInfo.PersonalInfo.age}</Text>
+      <Text style={globalStyles.text}>
+        Gender: {accInfo.PersonalInfo.gender}
+      </Text>
     </View>
   );
 };
