@@ -1,37 +1,36 @@
 import { StyleSheet } from "react-native";
+import { theme } from "../theme";
 
 const globalStyles = StyleSheet.create({
+  appStyle: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+    // justifyContent: "center",
+  },
   mainContainer: {
     flex: 1,
     flexDirection: "column",
-    alignContent: "center",
+    // alignContent: "center",
   },
   navigatorContainer: {
     flex: 1,
     flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "flex-start", // if you want to fill rows left to right
-    alignContent: "center",
+    // flexWrap: "wrap",
+    // alignContent: "center",
   },
-  container: {
+  column_1: {
     alignItems: "center",
+    width: "99%",
   },
-  link: { color: "blue" },
-  column: {
+  column_3: {
+    alignItems: "center",
+    justifyContent: "center",
     width: "33.3%",
   },
-  header: {
-    paddingTop: 40, // TODO: remove this padding
-    fontWeight: "bold",
-    textAlign: "center",
-  },
   centeredText: { textAlign: "center" },
-  image: { width: 200, height: 200, borderRadius: 200 / 2 },
-  imageContainer: { padding: 50 },
-  appStyle: {
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "center",
+  image_round: { width: 200, height: 200, borderRadius: 200 / 2 },
+  imageContainer: {
+    padding: 50,
   },
 });
 
