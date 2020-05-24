@@ -1,15 +1,12 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { Snackbar } from "react-native-paper";
 import { StyleSheet, View, Text } from "react-native";
 import { getStatusBarHeight } from "react-native-status-bar-height";
-import { theme } from "./theme";
-import { isEmpty } from "../../helpers/stringHelper";
+import { theme } from "../../theme";
 import {
-  ToasterState,
-  toasterReducer,
   ToasterActions,
 } from "../../redux/ToasterReducer";
-import { store, IStoreState } from "../../redux/store";
+import { IStoreState } from "../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 
 export enum ToasterType {

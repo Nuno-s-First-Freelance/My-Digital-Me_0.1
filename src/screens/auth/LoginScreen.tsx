@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AuthActions } from "../../redux/AuthReducer";
-import { theme } from "../../components/imported/theme";
+import { theme } from "../../theme";
 import Background from "../../components/imported/Background";
-import Header from "../../components/imported/Header";
 import TextInput from "../../components/imported/TextInput";
 import { emailValidator, passwordValidator } from "../../helpers/authHelper";
 import Button from "../../components/imported/Button";
@@ -70,7 +69,6 @@ const LoginScreen = ({ navigation }: any) => {
       {/* {loading && (
         <ActivityIndicator size="large" color={theme.colors.primary} />
       )} */}
-      <Header>Welcome back.</Header>
 
       <TextInput
         label="Email"

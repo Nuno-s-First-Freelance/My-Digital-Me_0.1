@@ -1,11 +1,10 @@
 import React from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import TextInput from "../../components/imported/TextInput";
-import { theme } from "../../components/imported/theme";
+import { theme } from "../../theme";
 import Button from "../../components/imported/Button";
 import { AuthActions } from "../../redux/AuthReducer";
 import { emailValidator } from "../../helpers/authHelper";
-import Header from "../../components/imported/Header";
 import Background from "../../components/imported/Background";
 import { isEmpty } from "../../helpers/stringHelper";
 import { useSelector, useDispatch } from "react-redux";
@@ -62,7 +61,6 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
     <Background>
       {/* <BackButton goBack={() => navigation.navigate(SCREENS.LOGIN_SCREEN)} /> */}
 
-      <Header>Restore Password</Header>
 
       <TextInput
         label="E-mail address"

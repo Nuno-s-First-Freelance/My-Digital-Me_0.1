@@ -1,10 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { theme } from "../../components/imported/theme";
+import { theme } from "../../theme";
 import { AuthActions } from "../../redux/AuthReducer";
 import { emailValidator, passwordValidator } from "../../helpers/authHelper";
 import Background from "../../components/imported/Background";
-import Header from "../../components/imported/Header";
 import TextInput from "../../components/imported/TextInput";
 import Button from "../../components/imported/Button";
 import { isEmpty } from "../../helpers/stringHelper";
@@ -69,7 +68,6 @@ const RegisterScreen = ({ navigation }: any) => {
     <Background>
       {/* <BackButton goBack={() => navigation.navigate("HomeScreen")} /> */}
 
-      <Header>Create Account</Header>
 
       {/* <TextInput
         label="Name"
