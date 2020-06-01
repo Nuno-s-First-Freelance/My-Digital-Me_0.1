@@ -34,12 +34,10 @@ const MainScreen = () => {
           <ProfessionalIcons />
         </View>
         <View style={globalStyles.column_3}>
-          <View style={globalStyles.imageContainer}>
-            <Avatar.Image
-              size={200}
-              source={require("../assets/personal/photos/professional.jpg")}
-            />
-          </View>
+          <Avatar.Image
+            size={200}
+            source={require("../assets/personal/photos/professional.jpg")}
+          />
         </View>
         <View style={globalStyles.column_3}>
           <SocialIcons />

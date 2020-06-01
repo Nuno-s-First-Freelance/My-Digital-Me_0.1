@@ -40,9 +40,6 @@ const globalStyles = StyleSheet.create({
   infoDisplay: {
     padding: 50,
   },
-  imageContainer: {
-    padding: 50,
-  },
 });
 
 export default globalStyles;
